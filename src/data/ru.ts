@@ -27,13 +27,13 @@ export const ru = {
   themes: {
     animals: 'Животные',
     food: 'Еда',
-    professions: 'Профессии',
-    transport: 'Транспорт',
-    nature: 'Природа',
-    objects: 'Объекты',
-    technology: 'Технологии',
+    places: 'Места',
     clothes: 'Одежда',
+    tools: 'Инструменты',
     sports: 'Спорт',
-    emotions: 'Эмоции'
+    jobs: 'Профессии',
+    movies: 'Фильмы',
+    instruments: 'Музыка',
+    nature: 'Природа'
   }
 } as const;

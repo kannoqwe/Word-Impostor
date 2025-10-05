@@ -27,13 +27,13 @@ export const en = {
   themes: {
     animals: 'Animals',
     food: 'Food',
-    professions: 'Professions',
-    transport: 'Transport',
-    nature: 'Nature',
-    objects: 'Objects',
-    technology: 'Technology',
+    places: 'Places',
     clothes: 'Clothes',
-    sports: 'Sport',
-    emotions: 'Emotions'
+    tools: 'Tools',
+    sports: 'Sports',
+    jobs: 'Jobs',
+    movies: 'Movies',
+    instruments: 'Instruments',
+    nature: 'Nature'
   }
 } as const;
