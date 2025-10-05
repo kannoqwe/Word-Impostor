@@ -17,6 +17,12 @@ The goal is to guess the secret word while trying to identify the impostors.
 
 ---
 
+## Live Demo
+
+Check out the game here: [Word Impostor](https://word-impostor-indol.vercel.app/)
+
+---
+
 ## Word Data Structure
 
 Words are stored in `words.ts` with the following structure:
