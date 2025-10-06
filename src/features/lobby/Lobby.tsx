@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Skull, Play, Lock } from 'lucide-react'
 import { texts } from '../../data/texts'
 import type { Language } from '../../types/game'
@@ -11,6 +11,27 @@ interface Props {
 
 export default function Lobby({ language, setLanguage, goToSetup }: Props) {
   const t = texts[language]
+  
+  useEffect(() => {
+    try {
+      const savedLanguage = localStorage.getItem('spyGameLanguage') as Language
+      if (savedLanguage && (savedLanguage === 'ru' || savedLanguage === 'en')) {
+        setLanguage(savedLanguage)
+      }
+    } catch (error) {
+      console.error('Error loading language:', error)
+    }
+  }, [])
+
+  const handleLanguageChange = (lang: Language) => {
+    setLanguage(lang)
+    try {
+      localStorage.setItem('spyGameLanguage', lang)
+    } catch (error) {
+      console.error('Error saving language:', error)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-slate-900 flex items-center justify-center p-6">
       <div className="text-center max-w-md w-full">
@@ -45,7 +66,7 @@ export default function Lobby({ language, setLanguage, goToSetup }: Props) {
 
         <div className="flex justify-center gap-3">
           <button
-            onClick={() => setLanguage('ru')}
+            onClick={() => handleLanguageChange('ru')}
             className={`px-6 py-2 rounded-xl font-semibold transition-all ${
               language === 'ru' 
                 ? 'bg-red-500 text-white' 
@@ -55,7 +76,7 @@ export default function Lobby({ language, setLanguage, goToSetup }: Props) {
             RU
           </button>
           <button
-            onClick={() => setLanguage('en')}
+            onClick={() => handleLanguageChange('en')}
             className={`px-6 py-2 rounded-xl font-semibold transition-all ${
               language === 'en' 
                 ? 'bg-red-500 text-white' 
@@ -66,10 +87,9 @@ export default function Lobby({ language, setLanguage, goToSetup }: Props) {
           </button>
         </div>
 
-          <footer className="text-slate-500 text-xs text-center mt-4">
-            MIT License © kannoqwe
-          </footer>
-          
+        <footer className="text-slate-500 text-xs text-center mt-4">
+          MIT License © kannoqwe
+        </footer>
       </div>
     </div>
   )

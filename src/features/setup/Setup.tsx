@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ArrowLeft, Crown, Minus, Plus, Play } from 'lucide-react'
 import { texts } from '../../data/texts'
 import { words } from '../../data/words'
 import type { Language } from '../../types/game'
-import type { SetupState } from '../../types/game'
 
 interface Props {
   language: Language
@@ -14,11 +13,47 @@ interface Props {
 
 export default function Setup({ language, setLanguage, startGame, goBack }: Props) {
   const t = texts[language]
-  const [gameMode, setGameMode] = useState<'standard' | 'special'>('standard')
-  const [numPlayers, setNumPlayers] = useState(4)
-  const [numImpostors, setNumImpostors] = useState(1)
-  const [playerNames, setPlayerNames] = useState<string[]>(['', '', '', ''])
-  const [selectedThemes, setSelectedThemes] = useState<string[]>(Object.keys(texts[language].themes))
+  
+  const loadSettings = () => {
+    try {
+      const saved = localStorage.getItem('spyGameSettings')
+      if (saved) {
+        return JSON.parse(saved)
+      }
+    } catch (error) {
+      console.error('Error loading settings:', error)
+    }
+    return null
+  }
+
+  const savedSettings = loadSettings()
+  
+  const [gameMode, setGameMode] = useState<'standard' | 'special'>(
+    savedSettings?.gameMode || 'standard'
+  )
+  const [numPlayers, setNumPlayers] = useState(savedSettings?.numPlayers || 4)
+  const [numImpostors, setNumImpostors] = useState(savedSettings?.numImpostors || 1)
+  const [playerNames, setPlayerNames] = useState<string[]>(
+    savedSettings?.playerNames || ['', '', '', '']
+  )
+  const [selectedThemes, setSelectedThemes] = useState<string[]>(
+    savedSettings?.selectedThemes || Object.keys(texts[language].themes)
+  )
+
+  useEffect(() => {
+    const settings = {
+      gameMode,
+      numPlayers,
+      numImpostors,
+      playerNames,
+      selectedThemes
+    }
+    try {
+      localStorage.setItem('spyGameSettings', JSON.stringify(settings))
+    } catch (error) {
+      console.error('Error saving settings:', error)
+    }
+  }, [gameMode, numPlayers, numImpostors, playerNames, selectedThemes])
 
   const updatePlayerCount = (count: number) => {
     const newCount = Math.max(3, Math.min(10, count))
