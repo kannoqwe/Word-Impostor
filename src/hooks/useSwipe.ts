@@ -1,73 +1,55 @@
-import { useState, useEffect } from 'react'
+import { useState, useRef, useCallback } from 'react';
 
-export const useSwipe = (revealed: boolean, setRevealed: (v: boolean) => void) => {
-  const [swipeStart, setSwipeStart] = useState(0)
-  const [swipeOffset, setSwipeOffset] = useState(0)
-  const [isDragging, setIsDragging] = useState(false)
+const MAX_SWIPE = 300;
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (revealed) return
-    setSwipeStart(e.touches[0].clientY)
-    setIsDragging(true)
-  }
+export function useSwipe() {
+   const [swipeOffset, setSwipeOffset] = useState(0);
+   const startY = useRef(0);
+   const isDragging = useRef(false);
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (revealed || !isDragging) return
-    const offset = swipeStart - e.touches[0].clientY
-    if (offset > 0) {
-      setSwipeOffset(Math.min(offset, 400))
-    }
-  }
+   const handleTouchStart = useCallback((e: React.TouchEvent) => {
+      startY.current = e.touches[0].clientY;
+      isDragging.current = true;
+   }, []);
 
-  const handleTouchEnd = () => {
-    if (revealed || !isDragging) return
-    setIsDragging(false)
-    if (swipeOffset > 100) {
-      setRevealed(true)
-    }
-    setSwipeOffset(0)
-  }
+   const handleTouchMove = useCallback((e: React.TouchEvent) => {
+      if (!isDragging.current) return;
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (revealed) return
-    setSwipeStart(e.clientY)
-    setIsDragging(true)
-  }
+      const diff = startY.current - e.touches[0].clientY;
+      if (diff > 0) setSwipeOffset(Math.min(diff, MAX_SWIPE));
+   }, []);
 
-  const handleMouseMove = (e: MouseEvent) => {
-    if (revealed || !isDragging) return
-    const offset = swipeStart - e.clientY
-    if (offset > 0) {
-      setSwipeOffset(Math.min(offset, 400))
-    }
-  }
+   const handleTouchEnd = useCallback(() => {
+      isDragging.current = false;
+      setSwipeOffset(0); 
+   }, []);
 
-  const handleMouseUp = () => {
-    if (revealed || !isDragging) return
-    setIsDragging(false)
-    if (swipeOffset > 100) {
-      setRevealed(true)
-    }
-    setSwipeOffset(0)
-  }
+   const handleMouseDown = useCallback((e: React.MouseEvent) => {
+      startY.current = e.clientY;
+      isDragging.current = true;
 
-  useEffect(() => {
-    if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove)
-      document.addEventListener('mouseup', handleMouseUp)
-      return () => {
-        document.removeEventListener('mousemove', handleMouseMove)
-        document.removeEventListener('mouseup', handleMouseUp)
-      }
-    }
-  }, [isDragging, swipeStart, revealed, swipeOffset])
+      const handleMouseMove = (moveEvent: MouseEvent) => {
+         if (!isDragging.current) return;
+         const diff = startY.current - moveEvent.clientY;
+         if (diff > 0) setSwipeOffset(Math.min(diff, MAX_SWIPE));
+      };
 
-  return {
-    swipeOffset,
-    isDragging,
-    handleTouchStart,
-    handleTouchMove,
-    handleTouchEnd,
-    handleMouseDown
-  }
+      const handleMouseUp = () => {
+         isDragging.current = false;
+         setSwipeOffset(0);
+         document.removeEventListener('mousemove', handleMouseMove);
+         document.removeEventListener('mouseup', handleMouseUp);
+      };
+
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+   }, []);
+
+   return {
+      swipeOffset,
+      handleTouchStart,
+      handleTouchMove,
+      handleTouchEnd,
+      handleMouseDown
+   };
 }
