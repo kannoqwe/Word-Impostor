@@ -29,6 +29,7 @@ export const SetupPage = React.memo<SetupPageProps>(({
       updateImpostorCount,
       updatePlayerName,
       toggleTheme,
+      toggleImpostorsKnowEachOther,
       isValid
    } = useSetupState({ themes: t.themes });
 
@@ -70,6 +71,9 @@ export const SetupPage = React.memo<SetupPageProps>(({
                      numImpostors={state.numImpostors}
                      numImpostorsLabel={t.numImpostors}
                      onImpostorCountChange={updateImpostorCount}
+                     impostorsKnowEachOther={state.impostorsKnowEachOther}
+                     impostorsKnowEachOtherLabel={t.impostorsKnowEachOther}
+                     onToggleImpostorsKnowEachOther={toggleImpostorsKnowEachOther}
                      themes={t.themes}
                      selectedThemes={state.selectedThemes}
                      themesLabel={t.selectThemes}

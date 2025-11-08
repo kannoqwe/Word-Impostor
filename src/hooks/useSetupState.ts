@@ -11,7 +11,8 @@ const DEFAULT_SETTINGS: SetupSettings = {
    numPlayers: 4,
    numImpostors: 1,
    playerNames: ['', '', '', ''],
-   selectedThemes: []
+   selectedThemes: [],
+   impostorsKnowEachOther: false
 };
 
 export const useSetupState = ({ themes }: UseSetupStateProps) => {
@@ -75,6 +76,13 @@ export const useSetupState = ({ themes }: UseSetupStateProps) => {
       }));
    }, []);
 
+   const toggleImpostorsKnowEachOther = useCallback(() => {
+      setState(prev => ({
+         ...prev,
+         impostorsKnowEachOther: !prev.impostorsKnowEachOther
+      }));
+   }, []);
+
    const isValid = state.selectedThemes.length > 0;
 
    return {
@@ -84,6 +92,7 @@ export const useSetupState = ({ themes }: UseSetupStateProps) => {
       updateImpostorCount,
       updatePlayerName,
       toggleTheme,
+      toggleImpostorsKnowEachOther,
       isValid
    };
 };

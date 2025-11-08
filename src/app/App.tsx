@@ -12,6 +12,7 @@ interface GameConfig {
    playerNames: string[]
    numImpostors: number
    selectedThemes: string[]
+   impostorsKnowEachOther: boolean
 }
 
 export default function App() {
@@ -46,7 +47,8 @@ export default function App() {
                name || `Player ${idx + 1}`
             ),
             numImpostors: settings.numImpostors,
-            selectedThemes: settings.selectedThemes
+            selectedThemes: settings.selectedThemes,
+            impostorsKnowEachOther: settings.impostorsKnowEachOther || false
          });
          setScreen('game');
       }
@@ -75,6 +77,7 @@ export default function App() {
                playerNames={gameConfig.playerNames}
                numImpostors={gameConfig.numImpostors}
                selectedThemes={gameConfig.selectedThemes}
+               impostorsKnowEachOther={gameConfig.impostorsKnowEachOther}
                onBackToLobby={handleBackToLobby}
             />
          )}

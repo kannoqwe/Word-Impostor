@@ -14,6 +14,7 @@ interface GameCardDisplayProps {
    hintLabel: string;
    playerLabel: string;
    swipeUpText: string;
+   otherImpostorsLabel?: string;
 }
 
 export const GameCardDisplay: React.FC<GameCardDisplayProps> = ({
@@ -25,6 +26,7 @@ export const GameCardDisplay: React.FC<GameCardDisplayProps> = ({
    hintLabel,
    playerLabel,
    swipeUpText,
+   otherImpostorsLabel,
 }) => {
    const { swipeOffset, handleTouchStart, handleTouchMove, handleTouchEnd, handleMouseDown } = useSwipe();
 
@@ -38,6 +40,7 @@ export const GameCardDisplay: React.FC<GameCardDisplayProps> = ({
                impostorLabel={impostorLabel}
                hintLabel={hintLabel}
                playerLabel={playerLabel}
+               otherImpostorsLabel={otherImpostorsLabel}
             />
          </Card>
 

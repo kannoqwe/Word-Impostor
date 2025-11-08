@@ -10,6 +10,7 @@ interface PlayerCardProps {
    impostorLabel: string
    hintLabel: string
    playerLabel: string
+   otherImpostorsLabel?: string
 }
 
 export const PlayerCard = React.memo<PlayerCardProps>(({ 
@@ -18,7 +19,8 @@ export const PlayerCard = React.memo<PlayerCardProps>(({
    wordLabel, 
    impostorLabel, 
    hintLabel, 
-   playerLabel 
+   playerLabel,
+   otherImpostorsLabel
 }) => {
    return (
       <div className="text-center space-y-6">
@@ -38,6 +40,20 @@ export const PlayerCard = React.memo<PlayerCardProps>(({
                   <p className="text-slate-400 text-sm mb-2 uppercase tracking-wider">{hintLabel}</p>
                   <p className="text-amber-400 text-2xl font-bold">{card.hint}</p>
                </div>
+               <div className="min-h-[120px]">
+                  {card.impostorNames && card.impostorNames.length > 0 && otherImpostorsLabel && (
+                     <div className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-6 border border-orange-400/30">
+                        <p className="text-slate-400 text-sm mb-2 uppercase tracking-wider">{otherImpostorsLabel}</p>
+                        <div className="flex flex-wrap gap-2 justify-center">
+                           {card.impostorNames.map((name, idx) => (
+                              <span key={idx} className="text-orange-400 text-lg font-semibold px-3 py-1 bg-orange-400/10 rounded-lg">
+                                 {name}
+                              </span>
+                           ))}
+                        </div>
+                     </div>
+                  )}
+               </div>
             </div>
          ) : (
             <div className="space-y-4">
@@ -48,6 +64,8 @@ export const PlayerCard = React.memo<PlayerCardProps>(({
                <div className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/30">
                   <h3 className="text-4xl font-bold text-white">{card.word}</h3>
                </div>
+               {/* Резервируем такое же место для выравнивания высоты карточек */}
+               <div className="min-h-[120px]" />
             </div>
          )}
 

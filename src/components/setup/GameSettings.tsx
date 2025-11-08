@@ -19,6 +19,10 @@ interface GameSettingsProps {
    numImpostorsLabel: string;
    onImpostorCountChange: (count: number) => void;
 
+   impostorsKnowEachOther: boolean;
+   impostorsKnowEachOtherLabel: string;
+   onToggleImpostorsKnowEachOther: () => void;
+
    themes: Record<string, string>;
    selectedThemes: string[];
    themesLabel: string;
@@ -37,6 +41,9 @@ export const GameSettings: React.FC<GameSettingsProps> = ({
    numImpostors,
    numImpostorsLabel,
    onImpostorCountChange,
+   impostorsKnowEachOther,
+   impostorsKnowEachOtherLabel,
+   onToggleImpostorsKnowEachOther,
    themes,
    selectedThemes,
    themesLabel,
@@ -71,6 +78,26 @@ export const GameSettings: React.FC<GameSettingsProps> = ({
                variant="danger"
             />
          </div>
+
+         {numImpostors > 1 && (
+            <div className="flex items-center justify-between bg-slate-800/50 backdrop-blur-sm rounded-xl p-4 border border-slate-700/50">
+               <label className="text-slate-300 font-medium cursor-pointer" onClick={onToggleImpostorsKnowEachOther}>
+                  {impostorsKnowEachOtherLabel}
+               </label>
+               <button
+                  onClick={onToggleImpostorsKnowEachOther}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                     impostorsKnowEachOther ? 'bg-cyan-500' : 'bg-slate-600'
+                  }`}
+               >
+                  <span
+                     className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                        impostorsKnowEachOther ? 'translate-x-6' : 'translate-x-1'
+                     }`}
+                  />
+               </button>
+            </div>
+         )}
 
          <div>
             <label className="block text-slate-300 mb-3 font-medium">

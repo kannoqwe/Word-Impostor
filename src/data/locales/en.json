@@ -10,6 +10,8 @@
   "numPlayers": "Players",
   "numImpostors": "Impostors",
   "selectThemes": "Select Themes",
+  "impostorsKnowEachOther": "Impostors know each other",
+  "otherImpostors": "Other impostors",
   "playerName": "Player",
   "startGame": "Start Game",
   "yourTurn": "Your turn to view",
@@ -33,7 +35,7 @@
     "fun_and_games": "Fun and Games",
     "technology_and_tools": "Technology and Tools",
     "time_and_space": "Time and Space",
-    "colors_and_shapes": "Colors and Shapes",
+    "colors_and_shapes": "Pop Culture",
     "feelings_and_actions": "Feelings and Actions"
   }
 }

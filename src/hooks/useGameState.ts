@@ -12,6 +12,7 @@ interface UseGameStateProps {
    selectedThemes: string[];
    gameMode: GameMode;
    language: Language;
+   impostorsKnowEachOther: boolean;
 }
 
 export const useGameState = ({
@@ -20,6 +21,7 @@ export const useGameState = ({
    selectedThemes,
    gameMode,
    language,
+   impostorsKnowEachOther,
 }: UseGameStateProps) => {
    const { getPlayerWeight, updateWeightsAfterRound } = usePlayerWeights();
    const [roundNumber, setRoundNumber] = useLocalStorage('currentRound', 0);
@@ -38,11 +40,12 @@ export const useGameState = ({
          impostorIndices,
          selectedThemes,
          gameMode,
-         language
+         language,
+         impostorsKnowEachOther
       );
 
       return shuffleArray(cards);
-   }, [playerNames, numImpostors, selectedThemes, gameMode, language, getPlayerWeight]);
+   }, [playerNames, numImpostors, selectedThemes, gameMode, language, impostorsKnowEachOther, getPlayerWeight]);
 
    const [cards, setCards] = useState<GameCard[]>(initializeGame);
    const [currentCard, setCurrentCard] = useState(0);
@@ -87,7 +90,8 @@ export const useGameState = ({
          impostorIndices,
          selectedThemes,
          gameMode,
-         language
+         language,
+         impostorsKnowEachOther
       );
 
       const shuffled = shuffleArray(newCards);
@@ -98,7 +102,7 @@ export const useGameState = ({
       setShowImpostors(false);
       setShowStartPlayer(false);
       setStartingPlayer(null);
-   }, [playerNames, numImpostors, selectedThemes, gameMode, language, getPlayerWeight]);
+   }, [playerNames, numImpostors, selectedThemes, gameMode, language, impostorsKnowEachOther, getPlayerWeight]);
 
    useEffect(() => {
       originalCardsRef.current = cards;

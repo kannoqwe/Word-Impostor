@@ -10,6 +10,8 @@
   "numPlayers": "Игроки",
   "numImpostors": "Импостеры",
   "selectThemes": "Выберите темы",
+  "impostorsKnowEachOther": "Импостеры знают друг друга",
+  "otherImpostors": "Другие импостеры",
   "playerName": "Игрок",
   "startGame": "Начать игру",
   "yourTurn": "Ваша очередь смотреть",
@@ -33,7 +35,7 @@
     "fun_and_games": "Развлечения и игры",
     "technology_and_tools": "Технологии и инструменты",
     "time_and_space": "Время и пространство",
-    "colors_and_shapes": "Цвета и формы",
+    "colors_and_shapes": "Поп-культура",
     "feelings_and_actions": "Чувства и действия"
   }
 }

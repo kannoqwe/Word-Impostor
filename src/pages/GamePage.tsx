@@ -14,6 +14,7 @@ interface GamePageProps {
    playerNames: string[];
    numImpostors: number;
    selectedThemes: string[];
+   impostorsKnowEachOther: boolean;
    onBackToLobby: () => void;
 }
 
@@ -23,6 +24,7 @@ export const GamePage = React.memo<GamePageProps>(function GamePageComponent({
    playerNames,
    numImpostors,
    selectedThemes,
+   impostorsKnowEachOther,
    onBackToLobby,
 }) {
    const { t } = useTranslation(language);
@@ -47,6 +49,7 @@ export const GamePage = React.memo<GamePageProps>(function GamePageComponent({
       selectedThemes,
       gameMode,
       language,
+      impostorsKnowEachOther,
    });
 
    if (showImpostors) {
@@ -99,6 +102,7 @@ export const GamePage = React.memo<GamePageProps>(function GamePageComponent({
                hintLabel={t.hint}
                playerLabel={t.player}
                swipeUpText={t.swipeUp}
+               otherImpostorsLabel={t.otherImpostors}
             />
 
             <GameActions

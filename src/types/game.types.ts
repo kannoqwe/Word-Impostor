@@ -8,11 +8,12 @@ export interface SetupSettings {
    numImpostors: number
    playerNames: string[]
    selectedThemes: string[]
+   impostorsKnowEachOther: boolean
 }
 
 export interface WordEntry {
    word: string
-   hint: string
+   hints: string[]
    special: string
 }
 
@@ -21,6 +22,7 @@ export interface GameCard {
    isImpostor: boolean
    word: string
    hint: string
+   impostorNames?: string[]
 }
 
 export interface GameState {
