@@ -38,9 +38,8 @@ export const useSetupState = ({ themes }: UseSetupStateProps) => {
          const newNames = [...prev.playerNames];
          while (newNames.length < validCount) newNames.push('');
          const adjustedNames = newNames.slice(0, validCount);
-      
-         const maxImpostors = Math.floor(validCount / 2);
-         const adjustedImpostors = Math.min(prev.numImpostors, maxImpostors);
+
+         const adjustedImpostors = Math.min(prev.numImpostors, validCount);
 
          return {
             ...prev,
@@ -53,8 +52,8 @@ export const useSetupState = ({ themes }: UseSetupStateProps) => {
 
    const updateImpostorCount = useCallback((count: number) => {
       setState(prev => {
-         const maxImpostors = Math.floor(prev.numPlayers / 2);
-         const validCount = Math.max(1, Math.min(maxImpostors, count));
+         const validCount = Math.max(0, Math.min(prev.numPlayers, count));
+
          return { ...prev, numImpostors: validCount };
       });
    }, []);
