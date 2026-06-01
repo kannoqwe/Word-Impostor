@@ -1,7 +1,7 @@
 import React from 'react';
 import { AlertCircle, Sparkles } from 'lucide-react';
-import { Avatar } from '../ui/Avatar';
-import type { GameCard, GameMode } from '../../types/game.types';
+import { Avatar } from '../../../shared/ui/Avatar';
+import type { GameCard, GameMode } from '../../../shared/types/game.types';
 
 interface PlayerCardProps {
    card: GameCard

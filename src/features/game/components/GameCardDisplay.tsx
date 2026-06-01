@@ -1,9 +1,9 @@
 import React from 'react';
-import { Card } from '../ui/Card';
+import { Card } from '../../../shared/ui/Card';
 import { PlayerCard } from './PlayerCard';
 import { SwipeCard } from './SwipeCard';
-import { useSwipe } from '../../hooks/useSwipe';
-import type { GameCard, GameMode } from '../../types/game.types';
+import { useSwipe } from '../hooks/useSwipe';
+import type { GameCard, GameMode } from '../../../shared/types/game.types';
 
 interface GameCardDisplayProps {
    card: GameCard;

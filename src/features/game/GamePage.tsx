@@ -1,12 +1,12 @@
 import React from 'react';
-import { useTranslation } from '../hooks/useTranslation';
-import { useGameState } from '../hooks/useGameState';
-import { GameProgress } from '../components/game/GameProgress';
-import { GameCardDisplay } from '../components/game/GameCardDisplay';
-import { GameActions } from '../components/game/GameActions';
-import { ImpostorReveal } from '../components/game/ImpostorReveal';
-import { StartingPlayer } from '../components/game/StartingPlayer';
-import type { Language, GameMode } from '../types/game.types';
+import { useTranslation } from '../../shared/hooks/useTranslation';
+import { GameProgress } from './components/GameProgress';
+import { GameCardDisplay } from './components/GameCardDisplay';
+import { GameActions } from './components/GameActions';
+import { ImpostorReveal } from './components/ImpostorReveal';
+import { StartingPlayer } from './components/StartingPlayer';
+import { useGameState } from './hooks/useGameState';
+import type { Language, GameMode } from '../../shared/types/game.types';
 
 interface GamePageProps {
    language: Language;

@@ -2,7 +2,7 @@ import React from 'react';
 import { GameModeSelector } from './GameModeSelector';
 import { PlayerCounter } from './PlayerCounter';
 import { ThemeSelector } from './ThemeSelector';
-import type { GameMode } from '../../types/game.types';
+import type { GameMode } from '../../../shared/types/game.types';
 
 interface GameSettingsProps {
    gameMode: GameMode;

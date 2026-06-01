@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
-import { useLocalStorage } from './useLocalStorage';
-import type { GameMode, SetupSettings } from '../types/game.types';
+import { useLocalStorage } from '../../../shared/hooks/useLocalStorage';
+import type { GameMode, SetupSettings } from '../../../shared/types/game.types';
 
 interface UseSetupStateProps {
    themes: Record<string, string>;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronRight, Play } from 'lucide-react';
-import { Button } from '../ui/Button';
+import { Button } from '../../../shared/ui/Button';
 
 interface GameActionsProps {
    isLastCard: boolean;

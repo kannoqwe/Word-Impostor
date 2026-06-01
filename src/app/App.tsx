@@ -1,9 +1,9 @@
 import React, { useState, useCallback } from 'react';
-import { useLocalStorage } from '../hooks/useLocalStorage';
-import { LobbyPage } from '../pages/LobbyPage';
-import { SetupPage } from '../pages/SetupPage';
-import { GamePage } from '../pages/GamePage';
-import type { GameConfig, Language } from '../types/game.types';
+import { GamePage } from '../features/game';
+import { LobbyPage } from '../features/lobby';
+import { SetupPage } from '../features/setup';
+import { useLocalStorage } from '../shared/hooks/useLocalStorage';
+import type { GameConfig, Language } from '../shared/types/game.types';
 
 type Screen = 'lobby' | 'setup' | 'game'
 

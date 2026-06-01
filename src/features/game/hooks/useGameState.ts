@@ -1,10 +1,10 @@
 import { useState, useCallback, useMemo } from 'react';
-import { generateGameCards } from '../utils/cardGenerator';
-import { selectImpostorsWithWeights } from '../utils/impostorSelector';
-import { shuffleArray } from '../utils/shuffleArray';
-import { usePlayerWeights } from '../hooks/usePlayerWeights';
-import { useLocalStorage } from '../hooks/useLocalStorage';
-import type { GameMode, Language } from '../types/game.types';
+import { generateGameCards } from '../../../shared/lib/cardGenerator';
+import { selectImpostorsWithWeights } from '../../../shared/lib/impostorSelector';
+import { shuffleArray } from '../../../shared/lib/shuffleArray';
+import { useLocalStorage } from '../../../shared/hooks/useLocalStorage';
+import { usePlayerWeights } from './usePlayerWeights';
+import type { GameMode, Language } from '../../../shared/types/game.types';
 
 interface UseGameStateProps {
    playerNames: string[];
