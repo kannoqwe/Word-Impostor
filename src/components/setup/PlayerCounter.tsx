@@ -16,22 +16,22 @@ export const PlayerCounter = React.memo<PlayerCounterProps>(({
    onDecrement,
    variant = 'default'
 }) => {
-   const textColor = variant === 'danger' ? 'text-orange-400' : 'text-white';
+   const textColor = variant === 'danger' ? 'text-rose-300' : 'text-lime-200';
   
    return (
-      <div className="bg-slate-700/30 backdrop-blur-sm rounded-xl p-4 border border-slate-600/30">
-         <label className="block text-slate-300 mb-3 font-medium text-sm text-center">{label}</label>
+      <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-4">
+         <label className="block text-stone-400 mb-3 text-center text-sm font-medium">{label}</label>
          <div className="flex items-center gap-3">
             <button
                onClick={onDecrement}
-               className="bg-cyan-600/80 hover:bg-cyan-600 p-2 rounded-lg transition"
+               className="grid h-10 w-10 place-items-center rounded-xl bg-white/10 transition hover:bg-white/15 active:scale-95"
             >
                <Minus className="w-4 h-4 text-white" />
             </button>
             <span className={`text-4xl font-bold ${textColor} flex-1 text-center`}>{value}</span>
             <button
                onClick={onIncrement}
-               className="bg-sky-600/80 hover:bg-sky-600 p-2 rounded-lg transition"
+               className="grid h-10 w-10 place-items-center rounded-xl bg-white/10 transition hover:bg-white/15 active:scale-95"
             >
                <Plus className="w-4 h-4 text-white" />
             </button>

@@ -33,6 +33,7 @@ export const GamePage = React.memo<GamePageProps>(function GamePageComponent({
       cards,
       currentCard,
       revealed,
+      setRevealed,
       showImpostors,
       showStartPlayer,
       startingPlayer,
@@ -78,13 +79,8 @@ export const GamePage = React.memo<GamePageProps>(function GamePageComponent({
    }
 
    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-cyan-950 to-slate-900 flex items-center justify-center p-6 relative overflow-hidden">
-         <div className="absolute inset-0 opacity-5">
-            <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-20 right-10 w-96 h-96 bg-sky-500 rounded-full blur-3xl"></div>
-         </div>
-
-         <div className="w-full max-w-md relative z-10">
+      <main className="app-shell">
+         <div className="phone-frame flex min-h-[calc(100svh-38px)] flex-col pb-20">
             <GameProgress
                progress={progress}
                currentCard={currentCard}
@@ -93,26 +89,34 @@ export const GamePage = React.memo<GamePageProps>(function GamePageComponent({
                yourTurnText={t.yourTurn}
             />
 
-            <GameCardDisplay
-               card={card}
-               gameMode={gameMode}
-               revealed={revealed}
-               wordLabel={t.word}
-               impostorLabel={t.impostor}
-               hintLabel={t.hint}
-               playerLabel={t.player}
-               swipeUpText={t.swipeUp}
-               otherImpostorsLabel={t.otherImpostors}
-            />
+            <div className="flex flex-1 items-center">
+               <GameCardDisplay
+                  card={card}
+                  gameMode={gameMode}
+                  revealed={revealed}
+                  wordLabel={t.word}
+                  impostorLabel={t.impostor}
+                  hintLabel={t.hint}
+                  playerLabel={t.player}
+                  swipeUpText={t.swipeUp}
+                  onReveal={() => setRevealed(true)}
+                  otherImpostorsLabel={t.otherImpostors}
+               />
+            </div>
 
-            <GameActions
-               isLastCard={currentCard >= cards.length - 1}
-               nextCardText={t.nextCard}
-               startGameText={t.startGame}
-               onNextCard={nextCard}
-               onStartGame={selectStartingPlayer}
-            />
+            <div className="fixed inset-x-0 bottom-0 z-30 border-t border-white/10 bg-neutral-950/82 px-4 py-3 backdrop-blur">
+               <div className="phone-frame">
+                  <GameActions
+                     isLastCard={currentCard >= cards.length - 1}
+                     canContinue={revealed}
+                     nextCardText={t.nextCard}
+                     startGameText={t.startGame}
+                     onNextCard={nextCard}
+                     onStartGame={selectStartingPlayer}
+                  />
+               </div>
+            </div>
          </div>
-      </div>
+      </main>
    );
 });

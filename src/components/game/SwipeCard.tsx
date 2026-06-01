@@ -1,5 +1,5 @@
 import React from 'react';
-import { Lock, ArrowUp } from 'lucide-react';
+import { ArrowUp, EyeOff } from 'lucide-react';
 
 interface SwipeCardProps {
    revealed: boolean
@@ -22,7 +22,7 @@ export const SwipeCard = React.memo<SwipeCardProps>(({
 }) => {
    return (
       <div
-         className={`absolute inset-0 bg-slate-800/80 backdrop-blur-3xl rounded-3xl min-h-full flex flex-col justify-center items-center p-8 transition-all duration-300 border border-slate-700/50 ${
+         className={`absolute inset-0 flex min-h-full flex-col items-center justify-center rounded-[28px] border border-white/10 bg-neutral-950/86 p-8 text-center backdrop-blur-2xl transition-all duration-300 ${
             !revealed ? 'cursor-grab active:cursor-grabbing' : 'pointer-events-none'
          }`}
          onTouchStart={onTouchStart}
@@ -36,10 +36,12 @@ export const SwipeCard = React.memo<SwipeCardProps>(({
             touchAction: 'none'
          }}
       >
-         <div className="text-center">
-            <Lock className="w-20 h-20 text-slate-600 mb-6 mx-auto" />
-            <ArrowUp className="w-10 h-10 text-cyan-400 mx-auto mb-4 animate-bounce" />
-            <p className="text-xl font-medium text-slate-300">{swipeUpText}</p>
+         <div>
+            <div className="mx-auto mb-6 grid h-24 w-24 place-items-center rounded-full bg-white/[0.07] ring-1 ring-white/10">
+               <EyeOff className="h-11 w-11 text-stone-400" />
+            </div>
+            <ArrowUp className="mx-auto mb-4 h-9 w-9 animate-bounce text-lime-300" />
+            <p className="text-xl font-bold leading-7 text-stone-100">{swipeUpText}</p>
          </div>
       </div>
    );

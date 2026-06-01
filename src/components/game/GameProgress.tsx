@@ -16,20 +16,22 @@ export const GameProgress: React.FC<GameProgressProps> = ({
    yourTurnText,
 }) => {
    return (
-      <div className="mb-6">
-         <div className="w-full h-2 bg-slate-800/50 rounded-full overflow-hidden mb-4 backdrop-blur-sm">
+      <header className="mb-5">
+         <div className="mb-4 h-2 w-full overflow-hidden rounded-full bg-white/10">
             <div
-               className="h-full bg-gradient-to-r from-cyan-500 to-sky-500 transition-all duration-500"
+               className="h-full rounded-full bg-lime-300 transition-all duration-500"
                style={{ width: `${progress}%` }}
             />
          </div>
-         <div className="text-center">
-            <span className="inline-block bg-slate-800/50 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-3 border border-slate-700/50">
+         <div className="flex items-end justify-between gap-4">
+            <div>
+               <p className="text-sm font-medium text-stone-400">{yourTurnText}</p>
+               <h2 className="mt-1 text-3xl font-black tracking-normal text-stone-50">{playerName}</h2>
+            </div>
+            <span className="rounded-2xl bg-white/[0.08] px-3 py-2 text-sm font-bold text-stone-200 ring-1 ring-white/10">
                {currentCard + 1} / {totalCards}
             </span>
-            <h2 className="text-3xl font-bold text-white mb-1">{playerName}</h2>
-            <p className="text-slate-400 text-sm">{yourTurnText}</p>
          </div>
-      </div>
+      </header>
    );
 };

@@ -44,8 +44,6 @@ export function usePlayerWeights() {
          }
       });
     
-      console.log('Updated weights after round', currentRound, ':', newWeights);
-    
       setWeights(newWeights);
    }, [weights, setWeights]);
 

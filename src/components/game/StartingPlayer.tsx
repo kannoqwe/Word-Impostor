@@ -1,8 +1,7 @@
 import React from 'react';
-import { Play, Eye } from 'lucide-react';
+import { Eye, Play } from 'lucide-react';
 import { Avatar } from '../ui/Avatar';
 import { Button } from '../ui/Button';
-import { Card } from '../ui/Card';
 import type { GameCard } from '../../types/game.types';
 
 interface StartingPlayerProps {
@@ -19,37 +18,35 @@ export const StartingPlayer = React.memo<StartingPlayerProps>(({
    onRevealImpostors
 }) => {
    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-cyan-950 to-slate-900 flex items-center justify-center p-6 relative overflow-hidden">
-         <div className="absolute inset-0 opacity-5">
-            <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-20 right-10 w-96 h-96 bg-sky-500 rounded-full blur-3xl"></div>
-         </div>
-      
-         <div className="w-full max-w-md relative z-10">
-            <Card>
-               <div className="text-center mb-8">
-                  <Play className="w-16 h-16 text-cyan-400 mx-auto mb-4" />
-                  <h2 className="text-3xl font-bold text-white mb-4">{title}</h2>
-                  <div className="flex justify-center mb-6">
-                     <Avatar name={startingPlayer.playerName} size={128} />
-                  </div>
-                  <p className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-sky-400 bg-clip-text text-transparent">
-                     {startingPlayer.playerName}
-                  </p>
+      <main className="app-shell">
+         <div className="phone-frame flex min-h-[calc(100svh-38px)] flex-col justify-center pb-24">
+            <div className="text-center">
+               <div className="mx-auto mb-8 grid h-20 w-20 place-items-center rounded-full bg-lime-300/12 ring-1 ring-lime-300/20">
+                  <Play className="h-10 w-10 text-lime-300" />
                </div>
+               <h2 className="text-3xl font-black tracking-normal text-stone-50">{title}</h2>
+               <div className="my-8 flex justify-center">
+                  <Avatar name={startingPlayer.playerName} size={132} />
+               </div>
+               <p className="break-words text-5xl font-black leading-tight text-stone-50">
+                  {startingPlayer.playerName}
+               </p>
+            </div>
 
-               <div className="space-y-3">
-                  <Button 
-                     onClick={onRevealImpostors} 
-                     variant="danger" 
-                     className="w-full flex items-center justify-center gap-2"
+            <div className="fixed inset-x-0 bottom-0 z-30 border-t border-white/10 bg-neutral-950/82 px-4 py-3 backdrop-blur">
+               <div className="phone-frame">
+                  <Button
+                     onClick={onRevealImpostors}
+                     variant="danger"
+                     className="w-full"
+                     size="lg"
                   >
-                     <Eye className="w-5 h-5" />
+                     <Eye className="h-5 w-5" />
                      {revealImpostorsText}
                   </Button>
                </div>
-            </Card>
+            </div>
          </div>
-      </div>
+      </main>
    );
 });

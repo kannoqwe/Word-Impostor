@@ -4,6 +4,7 @@ import { Button } from '../ui/Button';
 
 interface GameActionsProps {
    isLastCard: boolean;
+   canContinue: boolean;
    nextCardText: string;
    startGameText: string;
    onNextCard: () => void;
@@ -12,6 +13,7 @@ interface GameActionsProps {
 
 export const GameActions: React.FC<GameActionsProps> = ({
    isLastCard,
+   canContinue,
    nextCardText,
    startGameText,
    onNextCard,
@@ -22,7 +24,9 @@ export const GameActions: React.FC<GameActionsProps> = ({
          {!isLastCard ? (
             <Button
                onClick={onNextCard}
-               className="w-full flex items-center justify-center gap-2"
+               disabled={!canContinue}
+               className="w-full"
+               size="lg"
             >
                {nextCardText}
                <ChevronRight className="w-5 h-5" />
@@ -30,7 +34,9 @@ export const GameActions: React.FC<GameActionsProps> = ({
          ) : (
             <Button
                onClick={onStartGame}
-               className="w-full flex items-center justify-center gap-2"
+               disabled={!canContinue}
+               className="w-full"
+               size="lg"
             >
                <Play className="w-5 h-5" />
                {startGameText}

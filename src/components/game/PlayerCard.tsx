@@ -13,40 +13,40 @@ interface PlayerCardProps {
    otherImpostorsLabel?: string
 }
 
-export const PlayerCard = React.memo<PlayerCardProps>(({ 
-   card, 
-   gameMode, 
-   wordLabel, 
-   impostorLabel, 
-   hintLabel, 
+export const PlayerCard = React.memo<PlayerCardProps>(({
+   card,
+   gameMode,
+   wordLabel,
+   impostorLabel,
+   hintLabel,
    playerLabel,
    otherImpostorsLabel
 }) => {
    return (
-      <div className="text-center space-y-6">
+      <div className="flex min-h-[470px] flex-col text-center">
          <div className="mb-6 flex justify-center">
-            <Avatar name={card.playerName} size={128} />
+            <Avatar name={card.playerName} size={104} />
          </div>
 
          {gameMode === 'standard' && card.isImpostor ? (
-            <div className="space-y-4">
-               <div className="flex items-center justify-center gap-3 mb-4">
-                  <AlertCircle className="w-8 h-8 text-orange-400" />
-                  <h3 className="text-3xl font-bold bg-gradient-to-r from-orange-400 to-rose-400 bg-clip-text text-transparent">
+            <div className="flex flex-1 flex-col">
+               <div className="mb-5 flex items-center justify-center gap-3">
+                  <AlertCircle className="h-8 w-8 text-rose-300" />
+                  <h3 className="text-3xl font-black text-rose-200">
                      {impostorLabel}
                   </h3>
                </div>
-               <div className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/30">
-                  <p className="text-slate-400 text-sm mb-2 uppercase tracking-wider">{hintLabel}</p>
-                  <p className="text-amber-400 text-2xl font-bold">{card.hint}</p>
+               <div className="rounded-2xl border border-rose-300/20 bg-rose-300/10 p-5">
+                  <p className="mb-2 text-sm font-semibold uppercase text-stone-400">{hintLabel}</p>
+                  <p className="break-words text-2xl font-black leading-8 text-amber-200">{card.hint}</p>
                </div>
-               <div className="min-h-[120px]">
+               <div className="mt-4 min-h-[112px]">
                   {card.impostorNames && card.impostorNames.length > 0 && otherImpostorsLabel && (
-                     <div className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-6 border border-orange-400/30">
-                        <p className="text-slate-400 text-sm mb-2 uppercase tracking-wider">{otherImpostorsLabel}</p>
-                        <div className="flex flex-wrap gap-2 justify-center">
+                     <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-4">
+                        <p className="mb-2 text-sm font-semibold uppercase text-stone-400">{otherImpostorsLabel}</p>
+                        <div className="flex flex-wrap justify-center gap-2">
                            {card.impostorNames.map((name, idx) => (
-                              <span key={idx} className="text-orange-400 text-lg font-semibold px-3 py-1 bg-orange-400/10 rounded-lg">
+                              <span key={idx} className="rounded-xl bg-rose-300/12 px-3 py-1 text-base font-bold text-rose-200">
                                  {name}
                               </span>
                            ))}
@@ -56,22 +56,21 @@ export const PlayerCard = React.memo<PlayerCardProps>(({
                </div>
             </div>
          ) : (
-            <div className="space-y-4">
-               <div className="flex items-center justify-center gap-3 mb-4">
-                  <Sparkles className="w-8 h-8 text-cyan-400" />
-                  <p className="text-slate-300 text-xl font-medium uppercase tracking-wider">{wordLabel}</p>
+            <div className="flex flex-1 flex-col">
+               <div className="mb-5 flex items-center justify-center gap-3">
+                  <Sparkles className="h-8 w-8 text-lime-300" />
+                  <p className="text-lg font-bold uppercase text-stone-300">{wordLabel}</p>
                </div>
-               <div className="bg-slate-900/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/30">
-                  <h3 className="text-4xl font-bold text-white">{card.word}</h3>
+               <div className="rounded-2xl border border-lime-300/20 bg-lime-300/10 p-6">
+                  <h3 className="break-words text-4xl font-black leading-tight text-stone-50">{card.word}</h3>
                </div>
-               {/* Резервируем такое же место для выравнивания высоты карточек */}
-               <div className="min-h-[120px]" />
+               <div className="min-h-[112px]" />
             </div>
          )}
 
-         <div className="pt-4 border-t border-slate-700/50">
-            <p className="text-slate-500 text-sm uppercase tracking-widest mb-1">{playerLabel}</p>
-            <p className="text-white text-2xl font-bold">{card.playerName}</p>
+         <div className="border-t border-white/10 pt-4">
+            <p className="mb-1 text-sm font-semibold uppercase text-stone-500">{playerLabel}</p>
+            <p className="break-words text-2xl font-black text-stone-50">{card.playerName}</p>
          </div>
       </div>
    );

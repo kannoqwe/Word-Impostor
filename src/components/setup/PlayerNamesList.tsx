@@ -13,7 +13,7 @@ export const PlayerNamesList = React.memo<PlayerNamesListProps>(({
    placeholder
 }) => {
    return (
-      <div className="space-y-2 max-h-[340px] overflow-y-auto pr-2 custom-scrollbar">
+      <div className="space-y-2">
          {playerNames.map((name, idx) => (
             <Input
                key={idx}
