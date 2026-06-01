@@ -50,9 +50,9 @@ export const GameSettings: React.FC<GameSettingsProps> = ({
    onThemeToggle
 }) => {
    return (
-      <div className="space-y-6">
-         <div className="mb-8">
-            <label className="block text-slate-300 mb-4 font-medium text-center">
+      <div className="space-y-4">
+         <section className="rounded-2xl border border-white/10 bg-neutral-900/70 p-4">
+            <label className="mb-3 block text-sm font-semibold uppercase text-stone-400">
                {gameModeLabel}
             </label>
             <GameModeSelector
@@ -61,7 +61,7 @@ export const GameSettings: React.FC<GameSettingsProps> = ({
                classicLabel={classicLabel}
                specialLabel={specialLabel}
             />
-         </div>
+         </section>
 
          <div className="grid grid-cols-2 gap-4">
             <PlayerCounter
@@ -80,27 +80,27 @@ export const GameSettings: React.FC<GameSettingsProps> = ({
          </div>
 
          {numImpostors > 1 && (
-            <div className="flex items-center justify-between bg-slate-800/50 backdrop-blur-sm rounded-xl p-4 border border-slate-700/50">
-               <label className="text-slate-300 font-medium cursor-pointer" onClick={onToggleImpostorsKnowEachOther}>
+            <section className="flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-neutral-900/70 p-4">
+               <label className="cursor-pointer text-sm font-semibold leading-5 text-stone-200" onClick={onToggleImpostorsKnowEachOther}>
                   {impostorsKnowEachOtherLabel}
                </label>
                <button
                   onClick={onToggleImpostorsKnowEachOther}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                     impostorsKnowEachOther ? 'bg-cyan-500' : 'bg-slate-600'
+                  className={`relative inline-flex h-8 w-14 shrink-0 items-center rounded-full transition-colors ${
+                     impostorsKnowEachOther ? 'bg-lime-300' : 'bg-white/15'
                   }`}
                >
                   <span
-                     className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                        impostorsKnowEachOther ? 'translate-x-6' : 'translate-x-1'
+                     className={`inline-block h-6 w-6 transform rounded-full bg-neutral-950 transition-transform ${
+                        impostorsKnowEachOther ? 'translate-x-7' : 'translate-x-1'
                      }`}
                   />
                </button>
-            </div>
+            </section>
          )}
 
-         <div>
-            <label className="block text-slate-300 mb-3 font-medium">
+         <section className="rounded-2xl border border-white/10 bg-neutral-900/70 p-4">
+            <label className="mb-3 block text-sm font-semibold uppercase text-stone-400">
                {themesLabel}
             </label>
             <ThemeSelector
@@ -108,7 +108,7 @@ export const GameSettings: React.FC<GameSettingsProps> = ({
                selectedThemes={selectedThemes}
                onToggle={onThemeToggle}
             />
-         </div>
+         </section>
       </div>
    );
 };
