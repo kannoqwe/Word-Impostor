@@ -9,6 +9,7 @@ interface GameCardDisplayProps {
    card: GameCard;
    gameMode: GameMode;
    revealed: boolean;
+   resetKey: number;
    wordLabel: string;
    impostorLabel: string;
    hintLabel: string;
@@ -22,6 +23,7 @@ export const GameCardDisplay: React.FC<GameCardDisplayProps> = ({
    card,
    gameMode,
    revealed,
+   resetKey,
    wordLabel,
    impostorLabel,
    hintLabel,
@@ -47,6 +49,7 @@ export const GameCardDisplay: React.FC<GameCardDisplayProps> = ({
          </Card>
 
          <SwipeCard
+            key={resetKey}
             revealed={revealed}
             swipeOffset={swipeOffset}
             swipeUpText={swipeUpText}

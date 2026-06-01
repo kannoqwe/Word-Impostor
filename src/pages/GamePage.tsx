@@ -94,6 +94,7 @@ export const GamePage = React.memo<GamePageProps>(function GamePageComponent({
                   card={card}
                   gameMode={gameMode}
                   revealed={revealed}
+                  resetKey={currentCard}
                   wordLabel={t.word}
                   impostorLabel={t.impostor}
                   hintLabel={t.hint}
