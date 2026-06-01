@@ -50,7 +50,7 @@ export const SetupPage = React.memo<SetupPageProps>(({
    return (
       <main className="app-shell">
          <div className="phone-frame pb-24">
-            <div className="sticky top-0 z-20 -mx-4 mb-2 bg-neutral-950/70 px-4 pb-2 backdrop-blur">
+            <div className="mb-2">
                <SetupHeader
                   title={t.offline}
                   subtitle={t.subtitle}
