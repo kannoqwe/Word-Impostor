@@ -13,8 +13,6 @@ export function selectImpostorsWithWeights(
       weight: getWeight(name)
    }));
 
-   // console.log('weights before selection:', playersWithWeights);
-
    const selectedIndices: number[] = [];
   
    for (let i = 0; i < numImpostors; i++) {
@@ -23,13 +21,10 @@ export function selectImpostorsWithWeights(
     
       let random = Math.random() * totalWeight;
     
-      console.log(`Selecting impostor ${i + 1}, total weight: ${totalWeight}, random: ${random}`);
-    
       for (const player of remainingPlayers) {
          random -= player.weight;
          if (random <= 0) {
             selectedIndices.push(player.index);
-            console.log(`Selected: ${player.name} (index: ${player.index}, weight: ${player.weight})`);
             break;
          }
       }
