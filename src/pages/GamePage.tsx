@@ -108,6 +108,7 @@ export const GamePage = React.memo<GamePageProps>(function GamePageComponent({
                <div className="phone-frame">
                   <GameActions
                      isLastCard={currentCard >= cards.length - 1}
+                     canContinue={revealed}
                      nextCardText={t.nextCard}
                      startGameText={t.startGame}
                      onNextCard={nextCard}
