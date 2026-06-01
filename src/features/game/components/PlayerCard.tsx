@@ -1,7 +1,7 @@
 import React from 'react';
 import { AlertCircle, Sparkles } from 'lucide-react';
-import { Avatar } from '../ui/Avatar';
-import type { GameCard, GameMode } from '../../types/game.types';
+import { Avatar } from '../../../shared/ui/Avatar';
+import type { GameCard, GameMode } from '../../../shared/types/game.types';
 
 interface PlayerCardProps {
    card: GameCard
@@ -23,7 +23,7 @@ export const PlayerCard = React.memo<PlayerCardProps>(({
    otherImpostorsLabel
 }) => {
    return (
-      <div className="flex min-h-[470px] flex-col text-center">
+      <div className="flex h-full min-h-0 flex-col text-center">
          <div className="mb-6 flex justify-center">
             <Avatar name={card.playerName} size={104} />
          </div>
@@ -40,7 +40,7 @@ export const PlayerCard = React.memo<PlayerCardProps>(({
                   <p className="mb-2 text-sm font-semibold uppercase text-stone-400">{hintLabel}</p>
                   <p className="break-words text-2xl font-black leading-8 text-amber-200">{card.hint}</p>
                </div>
-               <div className="mt-4 min-h-[112px]">
+               <div className="mt-4 min-h-0 flex-1">
                   {card.impostorNames && card.impostorNames.length > 0 && otherImpostorsLabel && (
                      <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-4">
                         <p className="mb-2 text-sm font-semibold uppercase text-stone-400">{otherImpostorsLabel}</p>
@@ -64,7 +64,7 @@ export const PlayerCard = React.memo<PlayerCardProps>(({
                <div className="rounded-2xl border border-lime-300/20 bg-lime-300/10 p-6">
                   <h3 className="break-words text-4xl font-black leading-tight text-stone-50">{card.word}</h3>
                </div>
-               <div className="min-h-[112px]" />
+               <div className="min-h-0 flex-1" />
             </div>
          )}
 

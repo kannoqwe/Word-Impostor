@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import { useLocalStorage } from './useLocalStorage';
-import type { PlayerWeight } from '../types/player.types';
+import { useLocalStorage } from '../../../shared/hooks/useLocalStorage';
+import type { PlayerWeight } from '../../../shared/types/player.types';
 
 const WEIGHT_INCREMENT = 1.5; 
 const INITIAL_WEIGHT = 1.0;

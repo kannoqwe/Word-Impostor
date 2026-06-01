@@ -1,8 +1,8 @@
 import React from 'react';
 import { Lock, Play, Sparkles } from 'lucide-react';
-import { Button } from '../components/ui/Button';
-import { useTranslation } from '../hooks/useTranslation';
-import type { Language } from '../types/game.types';
+import { Button } from '../../shared/ui/Button';
+import { useTranslation } from '../../shared/hooks/useTranslation';
+import type { Language } from '../../shared/types/game.types';
 
 interface LobbyPageProps {
    language: Language

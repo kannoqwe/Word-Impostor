@@ -22,7 +22,7 @@ export const SwipeCard = React.memo<SwipeCardProps>(({
 }) => {
    return (
       <div
-         className={`absolute inset-0 flex min-h-full flex-col items-center justify-center rounded-[28px] border border-white/10 bg-neutral-950/86 p-8 text-center backdrop-blur-2xl transition-all duration-300 ${
+         className={`absolute inset-0 flex min-h-full flex-col items-center justify-center rounded-[28px] border border-white/10 bg-neutral-950/95 p-8 text-center backdrop-blur-3xl ${
             !revealed ? 'cursor-grab active:cursor-grabbing' : 'pointer-events-none'
          }`}
          onTouchStart={onTouchStart}

@@ -1,14 +1,15 @@
 import React from 'react';
-import { Card } from '../ui/Card';
+import { Card } from '../../../shared/ui/Card';
 import { PlayerCard } from './PlayerCard';
 import { SwipeCard } from './SwipeCard';
-import { useSwipe } from '../../hooks/useSwipe';
-import type { GameCard, GameMode } from '../../types/game.types';
+import { useSwipe } from '../hooks/useSwipe';
+import type { GameCard, GameMode } from '../../../shared/types/game.types';
 
 interface GameCardDisplayProps {
    card: GameCard;
    gameMode: GameMode;
    revealed: boolean;
+   resetKey: number;
    wordLabel: string;
    impostorLabel: string;
    hintLabel: string;
@@ -22,6 +23,7 @@ export const GameCardDisplay: React.FC<GameCardDisplayProps> = ({
    card,
    gameMode,
    revealed,
+   resetKey,
    wordLabel,
    impostorLabel,
    hintLabel,
@@ -33,8 +35,8 @@ export const GameCardDisplay: React.FC<GameCardDisplayProps> = ({
    const { swipeOffset, handleTouchStart, handleTouchMove, handleTouchEnd, handleMouseDown } = useSwipe({ onReveal });
 
    return (
-      <div className="relative w-full select-none overflow-hidden rounded-[28px] touch-none">
-         <Card className="min-h-[520px] p-5">
+      <div className="relative h-full min-h-0 w-full select-none overflow-hidden rounded-[28px] touch-none">
+         <Card className="h-full min-h-0 p-5">
             <PlayerCard
                card={card}
                gameMode={gameMode}
@@ -47,6 +49,7 @@ export const GameCardDisplay: React.FC<GameCardDisplayProps> = ({
          </Card>
 
          <SwipeCard
+            key={resetKey}
             revealed={revealed}
             swipeOffset={swipeOffset}
             swipeUpText={swipeUpText}

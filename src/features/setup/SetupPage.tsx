@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react';
 import { Play } from 'lucide-react';
-import { useTranslation } from '../hooks/useTranslation';
-import { useSetupState } from '../hooks/useSetupState';
-import { Button } from '../components/ui/Button';
-import { SetupHeader } from '../components/setup/SetupHeader';
-import { GameSettings } from '../components/setup/GameSettings';
-import { PlayerNamesList } from '../components/setup/PlayerNamesList';
-import type { GameConfig, Language } from '../types/game.types';
+import { useTranslation } from '../../shared/hooks/useTranslation';
+import { Button } from '../../shared/ui/Button';
+import { SetupHeader } from './components/SetupHeader';
+import { GameSettings } from './components/GameSettings';
+import { PlayerNamesList } from './components/PlayerNamesList';
+import { useSetupState } from './hooks/useSetupState';
+import type { GameConfig, Language } from '../../shared/types/game.types';
 
 interface SetupPageProps {
    language: Language;

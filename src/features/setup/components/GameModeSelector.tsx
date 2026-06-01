@@ -1,5 +1,5 @@
 import React from 'react';
-import type { GameMode } from '../../types/game.types';
+import type { GameMode } from '../../../shared/types/game.types';
 
 interface GameModeSelectorProps {
    gameMode: GameMode

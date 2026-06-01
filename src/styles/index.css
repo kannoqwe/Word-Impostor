@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+}
+
 html, body, #root {
   height: 100%;
 }
@@ -37,6 +41,11 @@ input {
     radial-gradient(circle at bottom right, rgba(132, 204, 22, 0.14), transparent 28rem),
     linear-gradient(145deg, #0a0a0a 0%, #18181b 50%, #111827 100%);
   padding: max(18px, env(safe-area-inset-top)) 16px max(20px, env(safe-area-inset-bottom));
+}
+
+.game-shell {
+  height: 100svh;
+  overflow: hidden;
 }
 
 .phone-frame {

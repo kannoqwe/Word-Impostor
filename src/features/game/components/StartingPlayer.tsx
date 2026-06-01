@@ -1,8 +1,8 @@
 import React from 'react';
 import { Eye, Play } from 'lucide-react';
-import { Avatar } from '../ui/Avatar';
-import { Button } from '../ui/Button';
-import type { GameCard } from '../../types/game.types';
+import { Avatar } from '../../../shared/ui/Avatar';
+import { Button } from '../../../shared/ui/Button';
+import type { GameCard } from '../../../shared/types/game.types';
 
 interface StartingPlayerProps {
    startingPlayer: GameCard

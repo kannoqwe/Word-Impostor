@@ -1,12 +1,12 @@
 import React from 'react';
-import { useTranslation } from '../hooks/useTranslation';
-import { useGameState } from '../hooks/useGameState';
-import { GameProgress } from '../components/game/GameProgress';
-import { GameCardDisplay } from '../components/game/GameCardDisplay';
-import { GameActions } from '../components/game/GameActions';
-import { ImpostorReveal } from '../components/game/ImpostorReveal';
-import { StartingPlayer } from '../components/game/StartingPlayer';
-import type { Language, GameMode } from '../types/game.types';
+import { useTranslation } from '../../shared/hooks/useTranslation';
+import { GameProgress } from './components/GameProgress';
+import { GameCardDisplay } from './components/GameCardDisplay';
+import { GameActions } from './components/GameActions';
+import { ImpostorReveal } from './components/ImpostorReveal';
+import { StartingPlayer } from './components/StartingPlayer';
+import { useGameState } from './hooks/useGameState';
+import type { Language, GameMode } from '../../shared/types/game.types';
 
 interface GamePageProps {
    language: Language;
@@ -79,8 +79,8 @@ export const GamePage = React.memo<GamePageProps>(function GamePageComponent({
    }
 
    return (
-      <main className="app-shell">
-         <div className="phone-frame flex min-h-[calc(100svh-38px)] flex-col pb-20">
+      <main className="app-shell game-shell">
+         <div className="phone-frame flex h-full min-h-0 flex-col pb-20">
             <GameProgress
                progress={progress}
                currentCard={currentCard}
@@ -89,11 +89,12 @@ export const GamePage = React.memo<GamePageProps>(function GamePageComponent({
                yourTurnText={t.yourTurn}
             />
 
-            <div className="flex flex-1 items-center">
+            <div className="flex min-h-0 flex-1 items-center">
                <GameCardDisplay
                   card={card}
                   gameMode={gameMode}
                   revealed={revealed}
+                  resetKey={currentCard}
                   wordLabel={t.word}
                   impostorLabel={t.impostor}
                   hintLabel={t.hint}
