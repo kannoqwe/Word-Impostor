@@ -79,8 +79,8 @@ export const GamePage = React.memo<GamePageProps>(function GamePageComponent({
    }
 
    return (
-      <main className="app-shell">
-         <div className="phone-frame flex min-h-[calc(100svh-38px)] flex-col pb-20">
+      <main className="app-shell game-shell">
+         <div className="phone-frame flex h-full min-h-0 flex-col pb-20">
             <GameProgress
                progress={progress}
                currentCard={currentCard}
@@ -89,7 +89,7 @@ export const GamePage = React.memo<GamePageProps>(function GamePageComponent({
                yourTurnText={t.yourTurn}
             />
 
-            <div className="flex flex-1 items-center">
+            <div className="flex min-h-0 flex-1 items-center">
                <GameCardDisplay
                   card={card}
                   gameMode={gameMode}
