@@ -1,8 +1,8 @@
 import { useState, useRef, useCallback, useMemo, useEffect } from 'react';
 import { generateGameCards } from '../utils/cardGenerator';
-import { selectImpostorsWithWeights } from '../utils/impostorSelector';
+import { selectImpostorsByHistory } from '../utils/impostorSelector';
 import { shuffleArray } from '../utils/shuffleArray';
-import { usePlayerWeights } from '../hooks/usePlayerWeights';
+import { usePlayerImpostorStats } from '../hooks/usePlayerImpostorStats';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import type { GameCard, GameMode, Language } from '../types/game.types';
 
@@ -23,16 +23,16 @@ export const useGameState = ({
    language,
    impostorsKnowEachOther,
 }: UseGameStateProps) => {
-   const { getPlayerWeight, updateWeightsAfterRound } = usePlayerWeights();
+   const { getPlayerStats, updateStatsAfterRound } = usePlayerImpostorStats();
    const [roundNumber, setRoundNumber] = useLocalStorage('currentRound', 0);
 
    const originalCardsRef = useRef<GameCard[]>([]);
 
    const initializeGame = useCallback(() => {
-      const impostorIndices = selectImpostorsWithWeights(
+      const impostorIndices = selectImpostorsByHistory(
          playerNames,
          numImpostors,
-         getPlayerWeight
+         getPlayerStats
       );
 
       const cards = generateGameCards(
@@ -45,7 +45,7 @@ export const useGameState = ({
       );
 
       return shuffleArray(cards);
-   }, [playerNames, numImpostors, selectedThemes, gameMode, language, impostorsKnowEachOther, getPlayerWeight]);
+   }, [playerNames, numImpostors, selectedThemes, gameMode, language, impostorsKnowEachOther, getPlayerStats]);
 
    const [cards, setCards] = useState<GameCard[]>(initializeGame);
    const [currentCard, setCurrentCard] = useState(0);
@@ -73,16 +73,16 @@ export const useGameState = ({
 
    const revealImpostors = useCallback(() => {
       const impostorNames = impostors.map((i) => i.playerName);
-      updateWeightsAfterRound(playerNames, impostorNames, roundNumber);
+      updateStatsAfterRound(playerNames, impostorNames, roundNumber);
       setRoundNumber(roundNumber + 1);
       setShowImpostors(true);
-   }, [impostors, playerNames, roundNumber, updateWeightsAfterRound, setRoundNumber]);
+   }, [impostors, playerNames, roundNumber, updateStatsAfterRound, setRoundNumber]);
 
    const startNewRound = useCallback(() => {
-      const impostorIndices = selectImpostorsWithWeights(
+      const impostorIndices = selectImpostorsByHistory(
          playerNames,
          numImpostors,
-         getPlayerWeight
+         getPlayerStats
       );
 
       const newCards = generateGameCards(
@@ -102,7 +102,7 @@ export const useGameState = ({
       setShowImpostors(false);
       setShowStartPlayer(false);
       setStartingPlayer(null);
-   }, [playerNames, numImpostors, selectedThemes, gameMode, language, impostorsKnowEachOther, getPlayerWeight]);
+   }, [playerNames, numImpostors, selectedThemes, gameMode, language, impostorsKnowEachOther, getPlayerStats]);
 
    useEffect(() => {
       originalCardsRef.current = cards;

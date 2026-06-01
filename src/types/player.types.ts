@@ -1,6 +1,7 @@
-export interface PlayerWeight {
+export interface PlayerImpostorStats {
    name: string
-   weight: number
+   roundsSinceImpostor: number
+   impostorCount: number
    lastImpostorRound: number | null
 }
 

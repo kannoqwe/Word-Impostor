@@ -1,39 +1,40 @@
-export function selectImpostorsWithWeights(
+import { shuffleArray } from './shuffleArray';
+import type { PlayerImpostorStats } from '../types/player.types';
+
+const CANDIDATE_POOL_MULTIPLIER = 2;
+const CANDIDATE_POOL_EXTRA = 1;
+
+export function selectImpostorsByHistory(
    playerNames: string[],
    numImpostors: number,
-   getWeight: (name: string) => number
+   getStats: (name: string) => PlayerImpostorStats
 ): number[] {
+   if (numImpostors <= 0) {
+      return [];
+   }
+
    if (numImpostors >= playerNames.length) {
       return playerNames.map((_, idx) => idx);
    }
 
-   const playersWithWeights = playerNames.map((name, index) => ({
-      index,
-      name,
-      weight: getWeight(name)
-   }));
+   const candidates = shuffleArray(
+      playerNames.map((name, index) => ({
+         index,
+         stats: getStats(name)
+      }))
+   ).sort((a, b) => {
+      const roundsDiff = b.stats.roundsSinceImpostor - a.stats.roundsSinceImpostor;
+      if (roundsDiff !== 0) return roundsDiff;
 
-   // console.log('weights before selection:', playersWithWeights);
+      return a.stats.impostorCount - b.stats.impostorCount;
+   });
 
-   const selectedIndices: number[] = [];
-  
-   for (let i = 0; i < numImpostors; i++) {
-      const remainingPlayers = playersWithWeights.filter(p => !selectedIndices.includes(p.index));
-      const totalWeight = remainingPlayers.reduce((sum, p) => sum + p.weight, 0);
-    
-      let random = Math.random() * totalWeight;
-    
-      console.log(`Selecting impostor ${i + 1}, total weight: ${totalWeight}, random: ${random}`);
-    
-      for (const player of remainingPlayers) {
-         random -= player.weight;
-         if (random <= 0) {
-            selectedIndices.push(player.index);
-            console.log(`Selected: ${player.name} (index: ${player.index}, weight: ${player.weight})`);
-            break;
-         }
-      }
-   }
-  
-   return selectedIndices;
+   const poolSize = Math.min(
+      playerNames.length,
+      Math.max(numImpostors, numImpostors * CANDIDATE_POOL_MULTIPLIER + CANDIDATE_POOL_EXTRA)
+   );
+
+   return shuffleArray(candidates.slice(0, poolSize))
+      .slice(0, numImpostors)
+      .map(candidate => candidate.index);
 }
