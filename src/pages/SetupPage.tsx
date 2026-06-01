@@ -7,12 +7,12 @@ import { Button } from '../components/ui/Button';
 import { SetupHeader } from '../components/setup/SetupHeader';
 import { GameSettings } from '../components/setup/GameSettings';
 import { PlayerNamesList } from '../components/setup/PlayerNamesList';
-import type { Language, GameState } from '../types/game.types';
+import type { GameConfig, Language } from '../types/game.types';
 
 interface SetupPageProps {
    language: Language;
    onBack: () => void;
-   onStartGame: (state: GameState) => void;
+   onStartGame: (config: GameConfig) => void;
 }
 
 export const SetupPage = React.memo<SetupPageProps>(({
@@ -35,12 +35,18 @@ export const SetupPage = React.memo<SetupPageProps>(({
 
    const handleStartGame = useCallback(() => {
       if (!isValid) return;
-    
+
       onStartGame({
-         cards: [],
-         gameMode: state.gameMode
+         gameMode: state.gameMode,
+         playerNames: state.playerNames.map((name, index) => {
+            const trimmedName = name.trim();
+            return trimmedName || `${t.player} ${index + 1}`;
+         }),
+         numImpostors: state.numImpostors,
+         selectedThemes: state.selectedThemes,
+         impostorsKnowEachOther: state.impostorsKnowEachOther
       });
-   }, [isValid, state.gameMode, onStartGame]);
+   }, [isValid, onStartGame, state, t.player]);
 
    return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-cyan-950 to-slate-900 p-6 relative overflow-hidden">

@@ -33,6 +33,7 @@ export const GamePage = React.memo<GamePageProps>(function GamePageComponent({
       cards,
       currentCard,
       revealed,
+      setRevealed,
       showImpostors,
       showStartPlayer,
       startingPlayer,
@@ -102,6 +103,7 @@ export const GamePage = React.memo<GamePageProps>(function GamePageComponent({
                hintLabel={t.hint}
                playerLabel={t.player}
                swipeUpText={t.swipeUp}
+               onReveal={() => setRevealed(true)}
                otherImpostorsLabel={t.otherImpostors}
             />
 

@@ -39,7 +39,7 @@ export const useSetupState = ({ themes }: UseSetupStateProps) => {
          while (newNames.length < validCount) newNames.push('');
          const adjustedNames = newNames.slice(0, validCount);
 
-         const adjustedImpostors = Math.min(prev.numImpostors, validCount);
+         const adjustedImpostors = Math.min(prev.numImpostors, validCount - 1);
 
          return {
             ...prev,
@@ -52,7 +52,7 @@ export const useSetupState = ({ themes }: UseSetupStateProps) => {
 
    const updateImpostorCount = useCallback((count: number) => {
       setState(prev => {
-         const validCount = Math.max(0, Math.min(prev.numPlayers, count));
+         const validCount = Math.max(1, Math.min(prev.numPlayers - 1, count));
 
          return { ...prev, numImpostors: validCount };
       });
@@ -82,7 +82,7 @@ export const useSetupState = ({ themes }: UseSetupStateProps) => {
       }));
    }, []);
 
-   const isValid = state.selectedThemes.length > 0;
+   const isValid = state.selectedThemes.length > 0 && state.numImpostors > 0 && state.numImpostors < state.numPlayers;
 
    return {
       state,

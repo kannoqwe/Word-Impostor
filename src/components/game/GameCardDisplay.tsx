@@ -14,6 +14,7 @@ interface GameCardDisplayProps {
    hintLabel: string;
    playerLabel: string;
    swipeUpText: string;
+   onReveal: () => void;
    otherImpostorsLabel?: string;
 }
 
@@ -26,9 +27,10 @@ export const GameCardDisplay: React.FC<GameCardDisplayProps> = ({
    hintLabel,
    playerLabel,
    swipeUpText,
+   onReveal,
    otherImpostorsLabel,
 }) => {
-   const { swipeOffset, handleTouchStart, handleTouchMove, handleTouchEnd, handleMouseDown } = useSwipe();
+   const { swipeOffset, handleTouchStart, handleTouchMove, handleTouchEnd, handleMouseDown } = useSwipe({ onReveal });
 
    return (
       <div className="relative mb-6 overflow-hidden select-none touch-none">

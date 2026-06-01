@@ -29,3 +29,11 @@ export interface GameState {
    cards: GameCard[]
    gameMode: GameMode
 }
+
+export interface GameConfig {
+   gameMode: GameMode
+   playerNames: string[]
+   numImpostors: number
+   selectedThemes: string[]
+   impostorsKnowEachOther: boolean
+}
