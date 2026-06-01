@@ -12,15 +12,15 @@ export const ThemeSelector = React.memo<ThemeSelectorProps>(({
    onToggle
 }) => {
    return (
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-2">
          {Object.entries(themes).map(([key, label]) => (
             <button
                key={key}
                onClick={() => onToggle(key)}
-               className={`py-3 px-4 rounded-xl font-medium transition-all ${
+               className={`min-h-11 rounded-2xl px-3 py-2 text-sm font-semibold leading-tight transition ${
                   selectedThemes.includes(key)
-                     ? 'bg-gradient-to-r from-cyan-600 to-sky-600 text-white shadow-md'
-                     : 'bg-slate-700/50 text-slate-300 hover:bg-slate-700 border border-slate-600/50'
+                     ? 'bg-lime-300 text-neutral-950'
+                     : 'border border-white/10 bg-white/[0.06] text-stone-300 hover:bg-white/10'
                }`}
             >
                {label}
