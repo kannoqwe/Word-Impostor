@@ -15,23 +15,25 @@ export const GameModeSelector = React.memo<GameModeSelectorProps>(({
    specialLabel
 }) => {
    return (
-      <div className="grid grid-cols-2 gap-2 rounded-2xl bg-white/[0.06] p-1 ring-1 ring-white/10">
+      <div className="grid grid-cols-2 gap-1 rounded-full border-[3px] border-[#1b1b1c] bg-white p-1 shadow-[0_4px_0_#00ccf9]">
          <button
             onClick={() => onSelect('standard')}
-            className={`min-h-12 rounded-xl px-3 text-sm font-semibold transition ${
+            aria-pressed={gameMode === 'standard'}
+            className={`display-font min-h-11 rounded-full px-3 text-xs transition sm:text-sm ${
                gameMode === 'standard'
-                  ? 'bg-stone-50 text-neutral-950 shadow-lg shadow-black/30'
-                  : 'text-stone-400 hover:text-stone-100'
+                  ? 'border-2 border-[#1b1b1c] bg-[#ffe170] text-[#1b1b1c]'
+                  : 'text-[#5c4037] hover:bg-[#f0edee]'
             }`}
          >
             {classicLabel}
          </button>
          <button
             onClick={() => onSelect('special')}
-            className={`min-h-12 rounded-xl px-3 text-sm font-semibold transition ${
+            aria-pressed={gameMode === 'special'}
+            className={`display-font min-h-11 rounded-full px-3 text-xs transition sm:text-sm ${
                gameMode === 'special'
-                  ? 'bg-stone-50 text-neutral-950 shadow-lg shadow-black/30'
-                  : 'text-stone-400 hover:text-stone-100'
+                  ? 'border-2 border-[#1b1b1c] bg-[#ffe170] text-[#1b1b1c]'
+                  : 'text-[#5c4037] hover:bg-[#f0edee]'
             }`}
          >
             {specialLabel}
