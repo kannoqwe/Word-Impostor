@@ -1,5 +1,5 @@
 import React from 'react';
-import { Lock, Play, Sparkles } from 'lucide-react';
+import { Lock, Play } from 'lucide-react';
 import { Button } from '../../shared/ui/Button';
 import { Doodles } from '../../shared/ui/Doodles';
 import { useTranslation } from '../../shared/hooks/useTranslation';
@@ -22,12 +22,7 @@ export const LobbyPage = React.memo<LobbyPageProps>(({
       <main className="app-shell">
          <Doodles />
          <div className="phone-frame lobby-frame flex min-h-[calc(100svh-48px)] flex-col">
-            <header className="flex items-center justify-between">
-               <div className="flex h-12 items-center gap-2 rounded-full border-[3px] border-[#1b1b1c] bg-white px-4 text-sm font-extrabold text-[#1b1b1c] shadow-[0_4px_0_#e9c400] lg:h-14 lg:px-6 lg:text-base">
-                  <Sparkles className="h-5 w-5 fill-[#e9c400] text-[#1b1b1c] lg:h-6 lg:w-6" strokeWidth={2.8} />
-                  Party game
-               </div>
-
+            <header className="flex items-center justify-end">
                <div className="grid grid-cols-2 rounded-full border-[3px] border-[#1b1b1c] bg-white p-1 shadow-[0_4px_0_#00ccf9] lg:p-1.5">
                   <button
                      onClick={() => onLanguageChange('ru')}
