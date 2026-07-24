@@ -16,24 +16,26 @@ export const PlayerCounter = React.memo<PlayerCounterProps>(({
    onDecrement,
    variant = 'default'
 }) => {
-   const textColor = variant === 'danger' ? 'text-rose-300' : 'text-lime-200';
+   const accentColor = variant === 'danger' ? 'text-[#aa3000]' : 'text-[#00677f]';
   
    return (
-      <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-4">
-         <label className="block text-stone-400 mb-3 text-center text-sm font-medium">{label}</label>
-         <div className="flex items-center gap-3">
+      <div>
+         <label className="display-font mb-2 block text-center text-xs text-[#1b1b1c] sm:text-sm">{label}</label>
+         <div className="flex items-center gap-3 rounded-full border-[3px] border-[#1b1b1c] bg-white p-1.5 shadow-[0_4px_0_#00ccf9]">
             <button
                onClick={onDecrement}
-               className="grid h-10 w-10 place-items-center rounded-xl bg-white/10 transition hover:bg-white/15 active:scale-95"
+               aria-label={`${label}: decrease`}
+               className="grid h-10 w-10 place-items-center rounded-full border-2 border-[#1b1b1c] bg-white transition hover:bg-[#f0edee] active:scale-90"
             >
-               <Minus className="w-4 h-4 text-white" />
+               <Minus className="h-5 w-5 text-[#1b1b1c]" strokeWidth={3} />
             </button>
-            <span className={`text-4xl font-bold ${textColor} flex-1 text-center`}>{value}</span>
+            <span className={`display-font flex-1 text-center text-4xl font-extrabold ${accentColor}`}>{value}</span>
             <button
                onClick={onIncrement}
-               className="grid h-10 w-10 place-items-center rounded-xl bg-white/10 transition hover:bg-white/15 active:scale-95"
+               aria-label={`${label}: increase`}
+               className="grid h-10 w-10 place-items-center rounded-full border-2 border-[#1b1b1c] bg-white transition hover:bg-[#f0edee] active:scale-90"
             >
-               <Plus className="w-4 h-4 text-white" />
+               <Plus className="h-5 w-5 text-[#1b1b1c]" strokeWidth={3} />
             </button>
          </div>
       </div>
