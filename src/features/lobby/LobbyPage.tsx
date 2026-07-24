@@ -1,6 +1,7 @@
 import React from 'react';
 import { Lock, Play, Sparkles } from 'lucide-react';
 import { Button } from '../../shared/ui/Button';
+import { Doodles } from '../../shared/ui/Doodles';
 import { useTranslation } from '../../shared/hooks/useTranslation';
 import type { Language } from '../../shared/types/game.types';
 
@@ -19,26 +20,29 @@ export const LobbyPage = React.memo<LobbyPageProps>(({
 
    return (
       <main className="app-shell">
-         <div className="phone-frame flex min-h-[calc(100svh-38px)] flex-col">
+         <Doodles />
+         <div className="phone-frame lobby-frame flex min-h-[calc(100svh-48px)] flex-col">
             <header className="flex items-center justify-between">
-               <div className="flex h-11 items-center gap-2 rounded-2xl bg-white/[0.07] px-3 text-sm font-semibold text-stone-200 ring-1 ring-white/10">
-                  <Sparkles className="h-4 w-4 text-lime-300" />
+               <div className="flex h-12 items-center gap-2 rounded-full border-[3px] border-[#1b1b1c] bg-white px-4 text-sm font-extrabold text-[#1b1b1c] shadow-[0_4px_0_#e9c400] lg:h-14 lg:px-6 lg:text-base">
+                  <Sparkles className="h-5 w-5 fill-[#e9c400] text-[#1b1b1c] lg:h-6 lg:w-6" strokeWidth={2.8} />
                   Party game
                </div>
 
-               <div className="grid grid-cols-2 rounded-2xl bg-white/[0.07] p-1 ring-1 ring-white/10">
+               <div className="grid grid-cols-2 rounded-full border-[3px] border-[#1b1b1c] bg-white p-1 shadow-[0_4px_0_#00ccf9] lg:p-1.5">
                   <button
                      onClick={() => onLanguageChange('ru')}
-                     className={`h-9 rounded-xl px-3 text-sm font-bold transition ${
-                        language === 'ru' ? 'bg-stone-50 text-neutral-950' : 'text-stone-400'
+                     aria-pressed={language === 'ru'}
+                     className={`h-9 rounded-full px-4 text-sm font-extrabold transition lg:h-10 lg:px-5 ${
+                        language === 'ru' ? 'bg-[#1b1b1c] text-white' : 'text-[#5c4037] hover:bg-[#f0edee]'
                      }`}
                   >
                      RU
                   </button>
                   <button
                      onClick={() => onLanguageChange('en')}
-                     className={`h-9 rounded-xl px-3 text-sm font-bold transition ${
-                        language === 'en' ? 'bg-stone-50 text-neutral-950' : 'text-stone-400'
+                     aria-pressed={language === 'en'}
+                     className={`h-9 rounded-full px-4 text-sm font-extrabold transition lg:h-10 lg:px-5 ${
+                        language === 'en' ? 'bg-[#1b1b1c] text-white' : 'text-[#5c4037] hover:bg-[#f0edee]'
                      }`}
                   >
                      EN
@@ -46,19 +50,23 @@ export const LobbyPage = React.memo<LobbyPageProps>(({
                </div>
             </header>
 
-            <section className="flex flex-1 flex-col justify-center py-10">
-               <div className="mb-10">
-                  <p className="mb-4 text-sm font-semibold uppercase text-lime-300">Word Impostor</p>
-                  <h1 className="max-w-[9ch] text-6xl font-black leading-[0.92] tracking-normal text-stone-50">
+            <section className="flex flex-1 flex-col justify-center py-12 sm:py-16">
+               <div className="mb-10 text-center">
+                  <p className="relative mx-auto mb-4 w-fit text-xs font-extrabold uppercase tracking-[0.04em] text-[#1b1b1c] after:absolute after:-inset-x-2 after:bottom-0 after:-z-10 after:h-2 after:rounded-full after:bg-[#e9c400] sm:text-sm lg:text-base">
+                     Word Impostor
+                  </p>
+                  <h1 className="display-font mx-auto max-w-[11ch] text-5xl font-extrabold leading-[0.9] tracking-[-0.045em] text-[#1b1b1c] sm:text-7xl lg:max-w-[8ch] lg:text-[124px] lg:leading-[0.84]">
                      Word Impostor
                   </h1>
-                  <p className="mt-6 max-w-sm text-lg leading-8 text-stone-300">{t.subtitle}</p>
+                  <p className="mx-auto mt-6 max-w-2xl text-lg font-medium leading-7 text-[#5c4037] sm:text-xl lg:mt-7 lg:text-2xl">
+                     {t.subtitle}
+                  </p>
                </div>
 
-               <div className="space-y-3">
+               <div className="mx-auto w-full max-w-xl space-y-5 lg:max-w-3xl lg:space-y-6">
                   <Button
                      onClick={onStartOffline}
-                     className="w-full"
+                     className="w-full lg:min-h-[88px] lg:text-2xl"
                      size="lg"
                   >
                      <Play className="h-5 w-5" />
@@ -68,19 +76,19 @@ export const LobbyPage = React.memo<LobbyPageProps>(({
                   <Button
                      disabled
                      variant="secondary"
-                     className="relative w-full"
+                     className="relative w-full lg:min-h-[88px] lg:text-2xl"
                      size="lg"
                   >
-                     <Lock className="h-5 w-5" />
-                     {t.online}
-                     <span className="absolute right-3 top-3 rounded-full bg-amber-300 px-2 py-0.5 text-[11px] font-black text-neutral-950">
+                     <Lock className="absolute left-5 h-5 w-5 sm:left-7" />
+                     <span className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap">{t.online}</span>
+                     <span className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full border-2 border-[#1b1b1c] bg-[#ffe170] px-3 py-1 text-[11px] font-extrabold uppercase text-[#1b1b1c]">
                         {t.comingSoon}
                      </span>
                   </Button>
                </div>
             </section>
 
-            <footer className="pb-1 text-xs text-stone-500">
+            <footer className="pb-1 text-center text-xs font-medium text-[#916f65]">
                MIT License (c) kannoqwe
             </footer>
          </div>
