@@ -17,8 +17,15 @@ export interface WordEntry {
    special: string
 }
 
+export interface PlayerAvatar {
+   id: string
+   src: string
+}
+
 export interface GameCard {
    playerName: string
+   avatarId?: string
+   avatarSrc?: string
    isImpostor: boolean
    word: string
    hint: string
