@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { Play } from 'lucide-react';
 import { useTranslation } from '../../shared/hooks/useTranslation';
 import { Button } from '../../shared/ui/Button';
+import { Doodles } from '../../shared/ui/Doodles';
 import { SetupHeader } from './components/SetupHeader';
 import { GameSettings } from './components/GameSettings';
 import { PlayerNamesList } from './components/PlayerNamesList';
@@ -48,18 +49,17 @@ export const SetupPage = React.memo<SetupPageProps>(({
    }, [isValid, onStartGame, state, t.player]);
 
    return (
-      <main className="app-shell">
-         <div className="phone-frame pb-24">
-            <div className="mb-2">
-               <SetupHeader
-                  title={t.offline}
-                  subtitle={t.subtitle}
-                  backText={t.back}
-                  onBack={onBack}
-               />
-            </div>
+      <main className="app-shell app-shell-scroll">
+         <Doodles />
+         <div className="phone-frame pb-28">
+            <SetupHeader
+               title={t.offline}
+               subtitle={t.subtitle}
+               backText={t.back}
+               onBack={onBack}
+            />
 
-            <div className="space-y-4">
+            <div className="cartoon-panel animate-pop-in p-4 sm:p-7">
                <GameSettings
                   gameMode={state.gameMode}
                   gameModeLabel={t.gameMode}
@@ -81,8 +81,8 @@ export const SetupPage = React.memo<SetupPageProps>(({
                   onThemeToggle={toggleTheme}
                />
 
-               <section className="rounded-2xl border border-white/10 bg-neutral-900/70 p-4">
-                  <label className="mb-3 block text-sm font-semibold uppercase text-stone-400">
+               <section className="mt-7 border-t-[3px] border-[#1b1b1c] pt-6">
+                  <label className="section-label text-center">
                      {t.playerName}
                   </label>
                   <PlayerNamesList
@@ -93,7 +93,7 @@ export const SetupPage = React.memo<SetupPageProps>(({
                </section>
             </div>
 
-            <div className="fixed inset-x-0 bottom-0 z-30 border-t border-white/10 bg-neutral-950/82 px-4 py-3 backdrop-blur">
+            <div className="action-dock">
                <div className="phone-frame">
                   <Button
                      onClick={handleStartGame}

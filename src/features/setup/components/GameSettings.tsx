@@ -50,9 +50,9 @@ export const GameSettings: React.FC<GameSettingsProps> = ({
    onThemeToggle
 }) => {
    return (
-      <div className="space-y-4">
-         <section className="rounded-2xl border border-white/10 bg-neutral-900/70 p-4">
-            <label className="mb-3 block text-sm font-semibold uppercase text-stone-400">
+      <div className="space-y-7">
+         <section>
+            <label className="section-label text-center">
                {gameModeLabel}
             </label>
             <GameModeSelector
@@ -63,7 +63,7 @@ export const GameSettings: React.FC<GameSettingsProps> = ({
             />
          </section>
 
-         <div className="grid grid-cols-2 gap-4">
+         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <PlayerCounter
                label={numPlayersLabel}
                value={numPlayers}
@@ -80,27 +80,29 @@ export const GameSettings: React.FC<GameSettingsProps> = ({
          </div>
 
          {numImpostors > 1 && (
-            <section className="flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-neutral-900/70 p-4">
-               <label className="cursor-pointer text-sm font-semibold leading-5 text-stone-200" onClick={onToggleImpostorsKnowEachOther}>
+            <section className="flex items-center justify-between gap-4 rounded-3xl border-[3px] border-[#1b1b1c] bg-[#fff8dc] p-4">
+               <label className="cursor-pointer text-sm font-bold leading-5 text-[#1b1b1c]" onClick={onToggleImpostorsKnowEachOther}>
                   {impostorsKnowEachOtherLabel}
                </label>
                <button
                   onClick={onToggleImpostorsKnowEachOther}
-                  className={`relative inline-flex h-8 w-14 shrink-0 items-center rounded-full transition-colors ${
-                     impostorsKnowEachOther ? 'bg-lime-300' : 'bg-white/15'
+                  role="switch"
+                  aria-checked={impostorsKnowEachOther}
+                  className={`relative inline-flex h-9 w-16 shrink-0 items-center rounded-full border-[3px] border-[#1b1b1c] transition-colors ${
+                     impostorsKnowEachOther ? 'bg-[#e9c400]' : 'bg-[#e5e2e3]'
                   }`}
                >
                   <span
-                     className={`inline-block h-6 w-6 transform rounded-full bg-neutral-950 transition-transform ${
-                        impostorsKnowEachOther ? 'translate-x-7' : 'translate-x-1'
+                     className={`inline-block h-6 w-6 transform rounded-full border-2 border-[#1b1b1c] bg-white transition-transform ${
+                        impostorsKnowEachOther ? 'translate-x-8' : 'translate-x-1'
                      }`}
                   />
                </button>
             </section>
          )}
 
-         <section className="rounded-2xl border border-white/10 bg-neutral-900/70 p-4">
-            <label className="mb-3 block text-sm font-semibold uppercase text-stone-400">
+         <section>
+            <label className="section-label text-center">
                {themesLabel}
             </label>
             <ThemeSelector

@@ -13,7 +13,7 @@ export const PlayerNamesList = React.memo<PlayerNamesListProps>(({
    placeholder
 }) => {
    return (
-      <div className="space-y-2">
+      <div className="grid gap-3 sm:grid-cols-2">
          {playerNames.map((name, idx) => (
             <Input
                key={idx}
