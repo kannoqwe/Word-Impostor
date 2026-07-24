@@ -1,5 +1,6 @@
 import { useState, useCallback, useMemo } from 'react';
 import { generateGameCards } from '../../../shared/lib/cardGenerator';
+import { assignPlayerAvatars } from '../../../shared/lib/avatarAssignment';
 import { selectImpostorsByHistory } from '../../../shared/lib/impostorSelector';
 import { shuffleArray } from '../../../shared/lib/shuffleArray';
 import { useLocalStorage } from '../../../shared/hooks/useLocalStorage';
@@ -25,6 +26,7 @@ export const useGameState = ({
 }: UseGameStateProps) => {
    const { getPlayerStats, updateStatsAfterRound } = usePlayerImpostorStats();
    const [roundNumber, setRoundNumber] = useLocalStorage('currentRound', 0);
+   const [playerAvatars] = useState(() => assignPlayerAvatars(playerNames.length));
 
    const createRoundCards = useCallback(() => {
       const impostorIndices = selectImpostorsByHistory(
@@ -42,8 +44,14 @@ export const useGameState = ({
          impostorsKnowEachOther
       );
 
-      return shuffleArray(cards);
-   }, [playerNames, numImpostors, selectedThemes, gameMode, language, impostorsKnowEachOther, getPlayerStats]);
+      const cardsWithAvatars = cards.map((card, index) => ({
+         ...card,
+         avatarId: playerAvatars[index]?.id,
+         avatarSrc: playerAvatars[index]?.src,
+      }));
+
+      return shuffleArray(cardsWithAvatars);
+   }, [playerNames, numImpostors, selectedThemes, gameMode, language, impostorsKnowEachOther, getPlayerStats, playerAvatars]);
 
    const [cards, setCards] = useState(createRoundCards);
    const [currentCard, setCurrentCard] = useState(0);
