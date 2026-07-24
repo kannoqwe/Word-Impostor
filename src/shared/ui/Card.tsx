@@ -7,7 +7,7 @@ interface CardProps {
 
 export const Card = React.memo<CardProps>(({ children, className = '' }) => {
    return (
-      <div className={`rounded-2xl border border-white/10 bg-neutral-900/82 p-5 shadow-2xl shadow-black/35 backdrop-blur ${className}`}>
+      <div className={`cartoon-panel p-5 ${className}`}>
          {children}
       </div>
    );
