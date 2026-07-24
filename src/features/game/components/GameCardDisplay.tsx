@@ -35,8 +35,8 @@ export const GameCardDisplay: React.FC<GameCardDisplayProps> = ({
    const { swipeOffset, handleTouchStart, handleTouchMove, handleTouchEnd, handleMouseDown } = useSwipe({ onReveal });
 
    return (
-      <div className="relative h-full min-h-0 w-full select-none overflow-hidden rounded-[28px] touch-none">
-         <Card className="h-full min-h-0 p-5">
+      <div className="relative h-full min-h-0 w-full select-none touch-none">
+         <Card className="h-full min-h-0 p-5 sm:p-7">
             <PlayerCard
                card={card}
                gameMode={gameMode}
