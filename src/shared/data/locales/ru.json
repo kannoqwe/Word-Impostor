@@ -22,6 +22,8 @@
   "swipeUp": "Свайп вверх чтобы открыть",
   "nextCard": "Следующий игрок",
   "playerStart": "Начинает игру",
+  "startingPlayerSubtitle": "Первым начинает обсуждение",
+  "revealImpostorsHint": "Когда раунд закончится, раскройте импостеров",
   "revealImpostors": "Раскрыть импостеров",
   "impostorsReveal": "Импостеры раскрыты",
   "playAgain": "Играть снова",

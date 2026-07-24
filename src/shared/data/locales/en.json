@@ -22,6 +22,8 @@
   "swipeUp": "Swipe up to reveal",
   "nextCard": "Next Player",
   "playerStart": "Starting Player",
+  "startingPlayerSubtitle": "Starts the discussion first",
+  "revealImpostorsHint": "When the round ends, reveal the impostors",
   "revealImpostors": "Reveal Impostors",
   "impostorsReveal": "Impostors Revealed",
   "playAgain": "Play Again",
