@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from '../../shared/hooks/useTranslation';
+import { Doodles } from '../../shared/ui/Doodles';
 import { GameProgress } from './components/GameProgress';
 import { GameCardDisplay } from './components/GameCardDisplay';
 import { GameActions } from './components/GameActions';
@@ -61,6 +62,7 @@ export const GamePage = React.memo<GamePageProps>(function GamePageComponent({
             impostorLabel={t.impostor}
             playAgainText={t.playAgain}
             backToLobbyText={t.backToLobby}
+            backText={t.back}
             onPlayAgain={startNewRound}
             onBackToLobby={onBackToLobby}
          />
@@ -72,7 +74,11 @@ export const GamePage = React.memo<GamePageProps>(function GamePageComponent({
          <StartingPlayer
             startingPlayer={startingPlayer}
             title={t.playerStart}
+            subtitle={t.startingPlayerSubtitle}
+            revealHint={t.revealImpostorsHint}
             revealImpostorsText={t.revealImpostors}
+            backText={t.back}
+            onBack={onBackToLobby}
             onRevealImpostors={revealImpostors}
          />
       );
@@ -80,12 +86,15 @@ export const GamePage = React.memo<GamePageProps>(function GamePageComponent({
 
    return (
       <main className="app-shell game-shell">
-         <div className="phone-frame flex h-full min-h-0 flex-col pb-20">
+         <Doodles />
+         <div className="phone-frame game-frame flex h-full min-h-0 flex-col pb-24">
             <GameProgress
                progress={progress}
                currentCard={currentCard}
                totalCards={cards.length}
                playerName={card.playerName}
+               avatarId={card.avatarId}
+               avatarSrc={card.avatarSrc}
                yourTurnText={t.yourTurn}
             />
 
@@ -105,8 +114,8 @@ export const GamePage = React.memo<GamePageProps>(function GamePageComponent({
                />
             </div>
 
-            <div className="fixed inset-x-0 bottom-0 z-30 border-t border-white/10 bg-neutral-950/82 px-4 py-3 backdrop-blur">
-               <div className="phone-frame">
+            <div className="action-dock">
+               <div className="phone-frame game-frame">
                   <GameActions
                      isLastCard={currentCard >= cards.length - 1}
                      canContinue={revealed}
