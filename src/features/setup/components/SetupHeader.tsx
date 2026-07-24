@@ -15,21 +15,21 @@ export const SetupHeader: React.FC<SetupHeaderProps> = ({
    onBack
 }) => {
    return (
-      <>
+      <header className="relative mb-8 text-center">
          <button
             onClick={onBack}
-            className="mb-5 flex h-11 items-center gap-2 rounded-2xl px-1 text-stone-300 transition hover:text-white"
+            className="mb-6 inline-flex min-h-11 items-center gap-2 rounded-full border-[3px] border-[#1b1b1c] bg-white px-4 text-sm font-extrabold text-[#1b1b1c] shadow-[0_4px_0_#e9c400] transition active:translate-y-1 active:shadow-none md:absolute md:left-0 md:top-0 md:mb-0 lg:fixed lg:left-10 lg:top-8"
          >
-            <ArrowLeft className="w-5 h-5" />
+            <ArrowLeft className="h-5 w-5" strokeWidth={3} />
             {backText}
          </button>
 
-         <div className="mb-6">
-            <h2 className="text-3xl font-black tracking-normal text-stone-50">
+         <div className="mx-auto max-w-3xl">
+            <h1 className="display-font text-4xl font-extrabold leading-[1.05] tracking-[-0.03em] text-[#1b1b1c] sm:text-5xl">
                {title}
-            </h2>
-            <p className="mt-2 text-sm leading-6 text-stone-400">{subtitle}</p>
+            </h1>
+            <p className="mt-2 text-sm font-medium leading-6 text-[#5c4037] sm:text-base">{subtitle}</p>
          </div>
-      </>
+      </header>
    );
 };
